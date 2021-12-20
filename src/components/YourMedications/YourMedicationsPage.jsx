@@ -11,11 +11,17 @@ class YourMedicationsPage extends Component {
     }
 
     componentDidMount(){
-
+        //this.getrequest
     }
 
-    render(){
+    //GET request for user's medications. set state to response.data
 
+    //method for the button onClick attribute. Makes PUT request and sets state to response.data.medications
+
+    render(){
+        <div>
+            <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} />
+        </div>
     }
 }
 
