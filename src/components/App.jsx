@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import NotFoundPage from './NotFound/NotFoundPage';
 import NavBar from './NavBar/NavBar';
 import RegisterPage from './Register/RegisterPage';
+import LoginPage from './Login/LoginPage';
 
 
 class App extends Component {
@@ -50,6 +51,7 @@ class App extends Component {
                         }
                     }}
                     />
+                    <Route path='/login' component={LoginPage} />
                     <Route path='/register' component={RegisterPage} />
                     <Route path='/notFound' component={NotFoundPage} />
                     <Redirect to='/notFound' />
