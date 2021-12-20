@@ -14,7 +14,19 @@ class YourMedicationsPage extends Component {
         //this.getrequest
     }
 
-    //GET request for user's medications. set state to response.data
+    getUserMedications = async () => {
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:5000/api/users/medications`, {headers: {'x-auth-token': jwt}});
+            console.log(response.data)
+            this.setState({
+                arrayOfMedications: response.data
+            })
+        }
+        catch(err){
+            console.log("Error getting user medications", err)
+        }
+    }
 
     //method for the button onClick attribute. Makes PUT request and sets state to response.data.medications
 
