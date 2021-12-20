@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import NotFoundPage from './NotFound/NotFoundPage';
 import NavBar from './NavBar/NavBar';
+import RegisterPage from './Register/RegisterPage';
 
 
 class App extends Component {
@@ -43,12 +44,13 @@ class App extends Component {
                 <Switch>
                     <Route path='/' exact render={props => {
                         if (!this.state.currentUser){
-                            return <Redirect to='/register' />
+                            return <Redirect to='/login' />
                         } else {
                             return <Redirect to='/yourMedications' />
                         }
                     }}
                     />
+                    <Route path='/register' component={RegisterPage} />
                     <Route path='/notFound' component={NotFoundPage} />
                     <Redirect to='/notFound' />
                 </Switch>
