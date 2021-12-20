@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import NotFoundPage from './NotFound/NotFoundPage';
+import NavBar from './NavBar/NavBar';
 
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
     render() {
         return(
             <div>
+                <NavBar currentUser={this.state.currentUser} />
                 <Switch>
                     <Route path='/' exact render={props => {
                         if (!this.state.currentUser){
