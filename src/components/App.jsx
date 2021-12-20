@@ -5,6 +5,7 @@ import NotFoundPage from './NotFound/NotFoundPage';
 import NavBar from './NavBar/NavBar';
 import RegisterPage from './Register/RegisterPage';
 import LoginPage from './Login/LoginPage';
+import YourMedicationsPage from './YourMedications/YourMedicationsPage';
 
 
 class App extends Component {
@@ -51,6 +52,7 @@ class App extends Component {
                         }
                     }}
                     />
+                    <Route path='/yourMedications' component={YourMedicationsPage} />
                     <Route path='/login' component={LoginPage} />
                     <Route path='/register' component={RegisterPage} />
                     <Route path='/notFound' component={NotFoundPage} />

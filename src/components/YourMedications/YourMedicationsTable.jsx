@@ -6,7 +6,7 @@ const YourMedicationsTable = (props) => {
         return(
             <tr>
                 <td>
-                    <button onClick={/*props.function that makes a PUT request and changes state of Quantity Remaining*/} />
+                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity)}>Take Dose</button>
                 </td>
                 <td>{element.name}</td>
                 <td>{element.strength.number}{element.strength.measurement}</td>

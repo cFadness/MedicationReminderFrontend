@@ -11,7 +11,7 @@ class YourMedicationsPage extends Component {
     }
 
     componentDidMount(){
-        //this.getrequest
+        this.getUserMedications()
     }
 
     getUserMedications = async () => {
@@ -28,12 +28,35 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    //method for the button onClick attribute. Makes PUT request and sets state to response.data.medications
+    takeDoseButton = async (medicationId, dose, quantity) => {
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.newQuantity(dose, quantity), {headers: {'x-auth-token': jwt}});
+            console.log(response.data)
+            this.setState({
+                arrayOfMedications: response.data.medications
+            })
+        }
+        catch(err){
+            console.log("Error making PUT request", err)
+        }
+    }
+
+    newQuantity = (dose, quantity) => {
+        let result = quantity - dose
+        return (
+            {
+                quantity: result
+            }
+        );
+    }
 
     render(){
-        <div>
-            <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} />
-        </div>
+        return(
+            <div>
+                <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} />
+            </div>
+        )
     }
 }
 
