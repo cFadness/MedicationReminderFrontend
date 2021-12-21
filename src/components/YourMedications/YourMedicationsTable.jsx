@@ -5,9 +5,8 @@ const YourMedicationsTable = (props) => {
     let medications = props.arrayOfMedications.map((element) => {
         return(
             <tr>
-                {/* props.function displays red alert message when low on quantity or refills */}
                 <td>
-                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name, element.refills, element.frequency)}>Take Dose</button>
+                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name, element.refills, element.frequency, /* element.notifyEnabled */)}>Take Dose</button>
                 </td>
                 <td>{element.name}</td>
                 <td>{element.strength.number}{element.strength.measurement}</td>
@@ -15,6 +14,11 @@ const YourMedicationsTable = (props) => {
                 <td>{element.frequency}</td>
                 <td>{element.quantity}</td>
                 <td>{element.refills}</td>
+                <td>
+                    <p>{/* props.method3(element.notifyEnabled)*/}</p>
+                    <button {/*onClick = props.method1(element.notifyEnabled) */}>Enable</button>
+                    <button {/* onClick = props.method2(element.notifyEnabled) */}>Disable</button>
+                </td>
             </tr>
         )
     });
@@ -30,6 +34,7 @@ const YourMedicationsTable = (props) => {
                     <th>Frequency</th>
                     <th>Quantity Remaining</th>
                     <th>Refills Remaining</th>
+                    <th>Pharmacy Notifications</th>
                 </tr>
             </thead>
             <tbody>

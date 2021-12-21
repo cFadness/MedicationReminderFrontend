@@ -38,7 +38,7 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    takeDoseButton = async (medicationId, dose, quantity, name, refills, frequency) => {
+    takeDoseButton = async (medicationId, dose, quantity, name, refills, frequency, /* notifyEnabled */) => {
         try{
             const jwt = localStorage.getItem('token');
             const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.setNewQuantity(dose, quantity, name), {headers: {'x-auth-token': jwt}});
@@ -46,6 +46,7 @@ class YourMedicationsPage extends Component {
             this.setState({
                 arrayOfMedications: response.data.medications
             })
+            //if notifyEnabled is true, run these two methods
             this.quantityAlert(dose, frequency, this.state.newQuantity, name, refills)
             this.refillsAlert(dose, frequency, this.state.newQuantity, name, refills)
         }
@@ -125,6 +126,15 @@ class YourMedicationsPage extends Component {
             )
         }
     }
+
+    //Add "notifyEnabled" property to Medications Schema on the backend API.
+
+    //create a method that makes a PUT request by a medication's ID (obtained from passing as props to the medications table component)
+    //... to change the property "notifyEnabled" to true and another method that changes it to false. Make sure to set state after
+    //... the PUT request.
+
+    //create a method that displays text in <p> tags "Enabled" or "Disabled" based on the medication's 'notifyEnabled' property
+    //...being set to true or false.
 
     render(){
         return(
