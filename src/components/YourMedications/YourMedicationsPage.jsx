@@ -8,8 +8,15 @@ class YourMedicationsPage extends Component {
         super(props);
         this.state = {
             arrayOfMedications: [],
-            hasTakenMeds: false,
-            medicationName : null
+            newQuantity: 0,
+            greenAlert: false,
+            yellowAlert: false,
+            redAlert: false,
+            blueAlert: false,
+            greenName : null,
+            yellowName: null,
+            redName: null,
+            blueName: null
         }
     }
 
@@ -31,47 +38,101 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    takeDoseButton = async (medicationId, dose, quantity, name) => {
+    takeDoseButton = async (medicationId, dose, quantity, name, refills, frequency) => {
         try{
             const jwt = localStorage.getItem('token');
-            const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.newQuantity(dose, quantity), {headers: {'x-auth-token': jwt}});
+            const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.setNewQuantity(dose, quantity, name), {headers: {'x-auth-token': jwt}});
             console.log(response.data)
             this.setState({
                 arrayOfMedications: response.data.medications
             })
-            this.confirmationAlert(name)
+            this.quantityAlert(dose, frequency, this.state.newQuantity, name, refills)
+            this.refillsAlert(dose, frequency, this.state.newQuantity, name, refills)
         }
         catch(err){
             console.log("Error making PUT request", err)
         }
     }
 
-    confirmationAlert = (medName) => {
+    quantityAlert = (dose, frequency, quantity, medName, refills) => {
+        let daysWorthRemaining = quantity/(dose*frequency)
+        if(daysWorthRemaining <= 5 && refills > 0){
+            this.setState({
+                yellowName: medName,
+                yellowAlert: true
+            })
+        }
+    }
+
+    refillsAlert = (dose, frequency, quantity, medName, refills) => {
+        let daysWorthRemaining = quantity/(dose*frequency)
+        if(daysWorthRemaining <= 7 && refills == 0){
+            this.setState({
+                redName: medName,
+                redAlert: true
+            })
+        }
+    }
+
+    resetYellowAlert = () => {
         this.setState({
-            medicationName: medName,
-            hasTakenMeds: true
+            yellowAlert: false
         })
     }
 
-    resetAlert = () => {
+    resetRedAlert = () => {
         this.setState({
-            hasTakenMeds: false
+            redAlert: false
         })
     }
 
-    newQuantity = (dose, quantity) => {
+    resetGreenAlert = () => {
+        this.setState({
+            greenAlert: false
+        })
+    }
+
+    resetBlueAlert = () => {
+        this.setState({
+            blueAlert: false
+        })
+    }
+
+    setNewQuantity = (dose, quantity, medName) => {
         let result = quantity - dose
-        return (
-            {
-                quantity: result
-            }
-        );
+        if(result >= 0){
+            this.setState({
+                newQuantity: result,
+                greenName: medName,
+                greenAlert: true
+            })
+            return (
+                {
+                    quantity: result
+                }
+            );
+        }
+        else{
+            this.setState({
+                newQuantity: result,
+                blueName: medName,
+                blueAlert: true
+            })
+            return (
+                {
+                    quantity: quantity
+                }
+            )
+        }
     }
 
     render(){
         return(
             <div>
-                {this.state.hasTakenMeds ? <Alert severity="success" onClose={() => this.resetAlert()}>You have taken a dose of {this.state.medicationName}</Alert> : null }
+                {this.state.redAlert ? <Alert severity="error" onClose={() => this.resetRedAlert()}>It is time to notify your pharmacy that you are out of refills for <strong>{this.state.redName}</strong></Alert> : null}
+                {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <strong>{this.state.yellowName}</strong></Alert> : null}
+                {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <strong>{this.state.greenName}</strong></Alert> : null }
+                {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <strong>{this.state.blueName}</strong></Alert> : null}
                 <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} />
             </div>
         )
