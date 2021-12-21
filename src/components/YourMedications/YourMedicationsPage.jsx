@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import YourMedicationsTable from './YourMedicationsTable';
+import Alert from './Alert';
 
 class YourMedicationsPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            arrayOfMedications: []
+            arrayOfMedications: [],
+            hasTakenMeds: false,
+            medicationName : null
         }
     }
 
@@ -28,7 +31,7 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    takeDoseButton = async (medicationId, dose, quantity) => {
+    takeDoseButton = async (medicationId, dose, quantity, name) => {
         try{
             const jwt = localStorage.getItem('token');
             const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.newQuantity(dose, quantity), {headers: {'x-auth-token': jwt}});
@@ -36,10 +39,24 @@ class YourMedicationsPage extends Component {
             this.setState({
                 arrayOfMedications: response.data.medications
             })
+            this.confirmationAlert(name)
         }
         catch(err){
             console.log("Error making PUT request", err)
         }
+    }
+
+    confirmationAlert = (medName) => {
+        this.setState({
+            medicationName: medName,
+            hasTakenMeds: true
+        })
+    }
+
+    resetAlert = () => {
+        this.setState({
+            hasTakenMeds: false
+        })
     }
 
     newQuantity = (dose, quantity) => {
@@ -54,6 +71,7 @@ class YourMedicationsPage extends Component {
     render(){
         return(
             <div>
+                {this.state.hasTakenMeds ? <Alert severity="success" onClose={() => this.resetAlert()}>You have taken a dose of {this.state.medicationName}</Alert> : null }
                 <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} />
             </div>
         )

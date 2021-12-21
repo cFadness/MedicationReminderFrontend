@@ -1,13 +1,13 @@
 import React from 'react';
-import MuiAlert from "@material-ui/lab/Alert";
 
 
 const YourMedicationsTable = (props) => {
     let medications = props.arrayOfMedications.map((element) => {
         return(
             <tr>
+                {/* props.function displays red alert message when low on quantity or refills */}
                 <td>
-                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity)}>Take Dose</button>
+                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name)}>Take Dose</button>
                 </td>
                 <td>{element.name}</td>
                 <td>{element.strength.number}{element.strength.measurement}</td>
