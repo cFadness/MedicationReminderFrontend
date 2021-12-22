@@ -6,6 +6,7 @@ import NavBar from './NavBar/NavBar';
 import RegisterPage from './Register/RegisterPage';
 import LoginPage from './Login/LoginPage';
 import YourMedicationsPage from './YourMedications/YourMedicationsPage';
+import UpdateMedicationPage from "./UpdateMedication/UpdateMedicationPage";
 
 
 class App extends Component {
@@ -76,6 +77,7 @@ class App extends Component {
                         }
                     }}
                     />
+                    <Route path='/updateMedications' component={UpdateMedicationPage} />
                     <Route path='/yourMedications' component={YourMedicationsPage} />
                     <Route path='/login' component={LoginPage} />
                     <Route path='/register' component={RegisterPage} />
