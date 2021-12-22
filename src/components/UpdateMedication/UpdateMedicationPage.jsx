@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import AddMedicationForm from './AddMedicationForm';
 
 
 class UpdateMedicationPage extends Component {
@@ -57,7 +58,7 @@ class UpdateMedicationPage extends Component {
     render(){
         return(
            <div>
-               
+               <AddMedicationForm addMedication = {this.addMedication}/>
            </div>
         )
     }
