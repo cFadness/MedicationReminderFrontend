@@ -38,17 +38,19 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    takeDoseButton = async (medicationId, dose, quantity, name, refills, frequency, /* notifyEnabled */) => {
+    takeDoseButton = async (medicationId, dose, quantity, name, refills, frequency, notifications) => {
         try{
             const jwt = localStorage.getItem('token');
             const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, this.setNewQuantity(dose, quantity, name), {headers: {'x-auth-token': jwt}});
             console.log(response.data)
             this.setState({
                 arrayOfMedications: response.data.medications
-            })
-            //if notifyEnabled is true, run these two methods
-            this.quantityAlert(dose, frequency, this.state.newQuantity, name, refills)
-            this.refillsAlert(dose, frequency, this.state.newQuantity, name, refills)
+            });
+
+            if(notifications === true){
+                this.quantityAlert(dose, frequency, this.state.newQuantity, name, refills)
+                this.refillsAlert(dose, frequency, this.state.newQuantity, name, refills)
+            }
         }
         catch(err){
             console.log("Error making PUT request", err)
@@ -127,14 +129,30 @@ class YourMedicationsPage extends Component {
         }
     }
 
-    //Add "notifyEnabled" property to Medications Schema on the backend API.
-
-    //create a method that makes a PUT request by a medication's ID (obtained from passing as props to the medications table component)
-    //... to change the property "notifyEnabled" to true and another method that changes it to false. Make sure to set state after
-    //... the PUT request.
-
-    //create a method that displays text in <p> tags "Enabled" or "Disabled" based on the medication's 'notifyEnabled' property
-    //...being set to true or false.
+    changeNotifications = async (medicationId, notifications) => {
+        let enable
+            if(notifications === false){
+                enable = {
+                    notifyEnabled: true
+                }
+            }
+            else{
+                enable = {
+                    notifyEnabled: false
+                }
+            }
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:5000/api/users/medications/${medicationId}`, enable, {headers: {'x-auth-token': jwt}});
+            console.log(response.data)
+            this.setState({
+                arrayOfMedications: response.data.medications
+            })
+        }
+        catch(err){
+            console.log("Error making PUT request", err)
+        }
+    }
 
     render(){
         return(
@@ -143,7 +161,7 @@ class YourMedicationsPage extends Component {
                 {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <strong>{this.state.yellowName}</strong></Alert> : null}
                 {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <strong>{this.state.greenName}</strong></Alert> : null }
                 {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <strong>{this.state.blueName}</strong></Alert> : null}
-                <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} />
+                <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} changeNotifications={this.changeNotifications} />
             </div>
         )
     }

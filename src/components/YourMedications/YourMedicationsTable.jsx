@@ -3,10 +3,18 @@ import React from 'react';
 
 const YourMedicationsTable = (props) => {
     let medications = props.arrayOfMedications.map((element) => {
+        let notifyStatus
+        if(element.notifyEnabled === true){
+            notifyStatus = "Enabled"
+        }
+        else{
+            notifyStatus = "Disabled"
+        }
+
         return(
             <tr>
                 <td>
-                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name, element.refills, element.frequency, /* element.notifyEnabled */)}>Take Dose</button>
+                    <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name, element.refills, element.frequency, element.notifyEnabled)}>Take Dose</button>
                 </td>
                 <td>{element.name}</td>
                 <td>{element.strength.number}{element.strength.measurement}</td>
@@ -15,9 +23,8 @@ const YourMedicationsTable = (props) => {
                 <td>{element.quantity}</td>
                 <td>{element.refills}</td>
                 <td>
-                    <p>{/* props.method3(element.notifyEnabled)*/}</p>
-                    <button {/*onClick = props.method1(element.notifyEnabled) */}>Enable</button>
-                    <button {/* onClick = props.method2(element.notifyEnabled) */}>Disable</button>
+                    <p>{notifyStatus}</p>
+                    <button onClick={() => props.changeNotifications(element._id, element.notifyEnabled)}>{element.notifyEnabled ? "Disable" : "Enable"}</button>
                 </td>
             </tr>
         )
