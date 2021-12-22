@@ -43,13 +43,25 @@ class AddMedicationForm extends Component {
                     </div>
                     <div>
                         <label>Strength</label>
-                        <input name="strength" onChange={this.handleChange} value={this.state.strength.number}/>
-                        <input name="strength" onChange={this.handleChange} value={this.state.strength.measurement}/>
+                        <input name="strength.number" onChange={this.handleChange} value={this.state.strength.number}/>
+                        <select name="strength.measurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                            <option selected value={''}>...</option>
+                            <option value={"g"}>grams "g"</option>
+                            <option value={"mg"}>miligrams "mg"</option>
+                            <option value={"ml"}>mililiters "ml"</option>
+                            <option value={"mig"}>micrograms "mig"</option> {/* need confirmation on options */}
+                        </select>
                     </div>
                     <div>
                         <label>Dose</label>
-                        <input name="dose" onChange={this.handleChange} value={this.state.dose.number}/>
-                        <input name="dose" onChange={this.handleChange} value={this.state.dose.form}/>
+                        <input name="dose.number" onChange={this.handleChange} value={this.state.dose.number}/>
+                        <select name="dose.form" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                            <option selected value={''}>...</option>
+                            <option value={"tablets"}>tablets</option>
+                            <option value={"capsules"}>capsules</option>
+                            <option value={"ml"}>mililiters "ml"</option>
+                            <option value={"mig"}>micrograms "mig"</option> {/* need confirmation on options */}
+                        </select>
                     </div>
                     <div>
                         <label>Frequency "How many times per day?"</label>
