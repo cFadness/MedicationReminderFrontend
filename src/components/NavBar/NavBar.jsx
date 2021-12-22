@@ -21,6 +21,8 @@ const NavBar = (props) => {
                     <React.Fragment>
                         <h4>Welcome {props.currentUser.name}</h4>
                         <li>
+                            <Link to="/yourMedications">Your Medications</Link>
+                            <Link to="/updateMedications">Update Medications</Link>
                             <Link onClick={() =>logout()}>Logout</Link>
                         </li>
                     </React.Fragment>
