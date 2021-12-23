@@ -31,8 +31,8 @@ class AddMedicationForm extends Component {
         this.props.addMedication(this.state)
     }
 
-    // Create a method that returns an 'option' html tag with many values ex.(1-100)
-    // Create dropdown menus for everything except for Name.
+    // split the 'quantity' property on the medication schema into 'number' and 'form' just like 'dose'
+    // add dropdown menu for quantity.form
 
    
     render(){
@@ -51,8 +51,9 @@ class AddMedicationForm extends Component {
                             <option selected value={''}>Select</option>
                             <option value={"g"}>grams "g"</option>
                             <option value={"mg"}>miligrams "mg"</option>
-                            <option value={"ml"}>mililiters "ml"</option>
-                            <option value={"mig"}>micrograms "mig"</option> {/* need confirmation on options */}
+                            <option value={"mg/ml"}>miligrams per mililiter "mg/ml"</option>
+                            <option value={"%"}>%</option>
+                            <option value={"mcg"}>micrograms "mcg"</option>
                         </select>
                     </div>
                     <div>
@@ -63,7 +64,7 @@ class AddMedicationForm extends Component {
                             <option value={"tablets"}>tablets</option>
                             <option value={"capsules"}>capsules</option>
                             <option value={"ml"}>mililiters "ml"</option>
-                            <option value={"mig"}>micrograms "mig"</option> {/* need confirmation on options */}
+                            <option value={"oz"}>ounces "oz"</option>
                         </select>
                     </div>
                     <div>
