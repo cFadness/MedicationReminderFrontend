@@ -31,6 +31,9 @@ class AddMedicationForm extends Component {
         this.props.addMedication(this.state)
     }
 
+    // Create a method that returns an 'option' html tag with many values ex.(1-100)
+    // Create dropdown menus for everything except for Name.
+
    
     render(){
         return(
@@ -45,7 +48,7 @@ class AddMedicationForm extends Component {
                         <label>Strength</label>
                         <input name="strength.number" onChange={this.handleChange} value={this.state.strength.number}/>
                         <select name="strength.measurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
-                            <option selected value={''}>...</option>
+                            <option selected value={''}>Select</option>
                             <option value={"g"}>grams "g"</option>
                             <option value={"mg"}>miligrams "mg"</option>
                             <option value={"ml"}>mililiters "ml"</option>
@@ -56,7 +59,7 @@ class AddMedicationForm extends Component {
                         <label>Dose</label>
                         <input name="dose.number" onChange={this.handleChange} value={this.state.dose.number}/>
                         <select name="dose.form" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
-                            <option selected value={''}>...</option>
+                            <option selected value={''}>Select</option>
                             <option value={"tablets"}>tablets</option>
                             <option value={"capsules"}>capsules</option>
                             <option value={"ml"}>mililiters "ml"</option>
