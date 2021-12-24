@@ -6,34 +6,45 @@ class AddMedicationForm extends Component {
         super(props);
         this.state = {
             name: "",
-            strength: {
-                number: "",
-                measurement: ""
-            },
-            dose: {
-                number: "",
-                form: ""
-            },
+            strengthNumber: "",
+            strengthMeasurement: "",
+            doseNumber: "",
+            doseForm: "",
             frequency: "",
             quantity: "",
-            refills: ""
+            refills: "",
+            medication: null
         };
     }
 
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+        }, () => {
+            this.setState({
+                medication: {
+                    name: this.state.name,
+                    strength: {
+                        number: this.state.strengthNumber,
+                        measurement: this.state.strengthMeasurement
+                    },
+                    dose: {
+                        number: this.state.doseNumber,
+                        form: this.state.doseForm
+                    },
+                    frequency: this.state.frequency,
+                    quantity: this.state.quantity,
+                    refills: this.state.refills
+                }
+            })
         });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addMedication(this.state)
+        console.log(this.state.medication)
+        this.props.addMedication(this.state.medication)
     }
-
-    // split the 'quantity' property on the medication schema into 'number' and 'form' just like 'dose'
-    // add dropdown menu for quantity.form
-
    
     render(){
         return(
@@ -46,8 +57,8 @@ class AddMedicationForm extends Component {
                     </div>
                     <div>
                         <label>Strength</label>
-                        <input name="strength.number" onChange={this.handleChange} value={this.state.strength.number}/>
-                        <select name="strength.measurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                        <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
+                        <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
                             <option selected value={''}>Select</option>
                             <option value={"g"}>grams "g"</option>
                             <option value={"mg"}>miligrams "mg"</option>
@@ -58,11 +69,11 @@ class AddMedicationForm extends Component {
                     </div>
                     <div>
                         <label>Dose</label>
-                        <input name="dose.number" onChange={this.handleChange} value={this.state.dose.number}/>
-                        <select name="dose.form" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                        <input name="doseNumber" onChange={this.handleChange} value={this.state.doseNumber}/>
+                        <select name="doseForm" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
                             <option selected value={''}>Select</option>
-                            <option value={"tablets"}>tablets</option>
-                            <option value={"capsules"}>capsules</option>
+                            <option value={"tablet(s)"}>tablets</option>
+                            <option value={"capsule(s)"}>capsules</option>
                             <option value={"ml"}>mililiters "ml"</option>
                             <option value={"oz"}>ounces "oz"</option>
                         </select>

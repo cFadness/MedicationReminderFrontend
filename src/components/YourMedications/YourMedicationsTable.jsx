@@ -18,9 +18,9 @@ const YourMedicationsTable = (props) => {
                 </td>
                 <td>{element.name}</td>
                 <td>{element.strength.number}{element.strength.measurement}</td>
-                <td>{element.dose.number}{element.dose.form}</td>
+                <td>{`${element.dose.number} ${element.dose.form}`}</td>
                 <td>{element.frequency} times per day</td>
-                <td>{element.quantity}</td>
+                <td>{`${element.quantity} ${element.dose.form}`}</td>
                 <td>{element.refills}</td>
                 <td>
                     <p>{notifyStatus}</p>
