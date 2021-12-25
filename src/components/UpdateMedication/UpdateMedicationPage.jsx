@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import AddMedicationForm from './AddMedicationForm';
+import EditMedicationForm from './EditMedicationForm';
+import RemoveMedicationForm from './RemoveMedicationForm';
 
 
 class UpdateMedicationPage extends Component {
@@ -86,6 +88,7 @@ class UpdateMedicationPage extends Component {
                    <Link onClick={this.chooseRemoveForm}>Remove medication</Link>
                </div>
                {this.state.currentFormAdd ? <AddMedicationForm addMedication = {this.addMedication} /> : null}
+               {this.state.currentFormEdit ? <EditMedicationForm editMedication = {this.editMedication} /> : null}
            </div>
         )
     }
