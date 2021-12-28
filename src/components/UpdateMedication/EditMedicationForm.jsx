@@ -23,34 +23,45 @@ class EditMedicationForm extends Component {
         this.getUserMedications()
     }
 
-    componentDidUpdate(prevState){
-        if(this.state.selectedMedication !== prevState.selectedMedication){
-            this.formFiller(this.state.selectedMedication)
-        }
-    }
+    // componentDidUpdate(prevState){
+    //     if(this.state.selectedMedication !== prevState.selectedMedication){
+    //         this.formFiller(this.state.selectedMedication)
+    //     }
+    // }
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        }, () => {
+        if(event.target.name === "selectedMedication" && event.target.value !== ""){
             this.setState({
-                medication: {
-                    name: this.state.name,
-                    strength: {
-                        number: this.state.strengthNumber,
-                        measurement: this.state.strengthMeasurement
-                    },
-                    dose: {
-                        number: this.state.doseNumber,
-                        form: this.state.doseForm
-                    },
-                    frequency: this.state.frequency,
-                    quantity: this.state.quantity,
-                    refills: this.state.refills
-                },
-                selectedMedication: this.state.selectedMedication
-            })
-        });
+                [event.target.name]: event.target.value,
+            }, () => {
+                this.setState({
+                    selectedMedication: this.state.selectedMedication
+                })
+            });
+            this.formFiller(event.target.value)
+        }
+        else{
+            this.setState({
+                [event.target.name]: event.target.value,
+            }, () => {
+                this.setState({
+                    medication: {
+                        name: this.state.name,
+                        strength: {
+                            number: this.state.strengthNumber,
+                            measurement: this.state.strengthMeasurement
+                        },
+                        dose: {
+                            number: this.state.doseNumber,
+                            form: this.state.doseForm
+                        },
+                        frequency: this.state.frequency,
+                        quantity: this.state.quantity,
+                        refills: this.state.refills
+                    }
+                })
+            });
+        }
     }
 
     handleSubmit = (event) => {
@@ -99,9 +110,9 @@ class EditMedicationForm extends Component {
     //     })
     // }
 
-    formFiller = (selectedMedication) => {
+    formFiller = (medId) => {
         let newArray = this.state.arrayOfMedications.filter((element) => {
-            if(element._id === selectedMedication){
+            if(element._id === medId){
                 return true
             }
             else{
