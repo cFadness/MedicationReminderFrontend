@@ -34,7 +34,7 @@ const YourMedicationsTable = (props) => {
         <table>
             <thead>
                 <tr>
-                    <th>Take Dose Button</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Strength</th>
                     <th>Dose</th>

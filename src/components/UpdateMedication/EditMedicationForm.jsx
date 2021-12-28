@@ -14,8 +14,19 @@ class EditMedicationForm extends Component {
             quantity: "",
             refills: "",
             medication: null,
-            selectedMedication: null
+            selectedMedication: "",
+            arrayOfMedications: []
         };
+    }
+
+    componentDidMount(){
+        this.getUserMedications()
+    }
+
+    componentDidUpdate(prevState){
+        if(this.state.selectedMedication !== prevState.selectedMedication){
+            this.formFiller(this.state.selectedMedication)
+        }
     }
 
     handleChange = (event) => {
@@ -44,21 +55,77 @@ class EditMedicationForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.editMedication(/* Object, this.state.selectedMedication */)
+        this.props.editMedication(this.state.medication, this.state.selectedMedication)
     }
 
-    //method that makes a GET request for all meds by user ID and maps over them and displays a dropdown menu
-    //... with element.name as the label and element._id as the value. The select name= attribute
-    //... will be a state variable 'selectedMedication'.
+    getUserMedications = async () => {
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:5000/api/users/medications`, {headers: {'x-auth-token': jwt}});
+            console.log(response.data)
+            this.setState({
+                arrayOfMedications: response.data
+            })
+        }
+        catch(err){
+            console.log("Error getting user medications", err)
+        }
+    }
 
-    //method that filters the array of medications from the GET request by the medID in state (selectedMedication).
-    //... then take that object (newArray[0]) and set state to its values.
-    //... this.state.name = newArray[0].name        this.state.strengthNumber = newArray[0].strength.number etc.
+    medicationSelector = () => {
+        let dropDownList = this.state.arrayOfMedications.map((element) => {
+            return(
+                <option value={element._id}>{element.name}</option>
+            )
+        });
+        return(
+            <select name="selectedMedication" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                <option selected value={""}>Select</option>
+                {dropDownList}
+            </select>
+        )
+    }
+
+    // formFiller = (medication) => {
+    //     this.setState({
+    //         name: medication.name,
+    //         strengthNumber: medication.strength.number,
+    //         strengthMeasurement: medication.strength.measurement,
+    //         doseNumber: medication.dose.number,
+    //         doseForm: medication.dose.form,
+    //         frequency: medication.frequency,
+    //         quantity: medication.quantity,
+    //         refills: medication.refills
+    //     })
+    // }
+
+    formFiller = (selectedMedication) => {
+        let newArray = this.state.arrayOfMedications.filter((element) => {
+            if(element._id === selectedMedication){
+                return true
+            }
+            else{
+                return false
+            }
+        });
+
+        this.setState({
+            name: newArray[0].name,
+            strengthNumber: newArray[0].strength.number,
+            strengthMeasurement: newArray[0].strength.measurement,
+            doseNumber: newArray[0].dose.number,
+            doseForm: newArray[0].dose.form,
+            frequency: newArray[0].frequency,
+            quantity: newArray[0].quantity,
+            refills: newArray[0].refills
+        })
+    }
    
     render(){
         return(
            <div>
                <h5>Edit a medication:</h5>
+               {this.medicationSelector()}
                <form onSubmit={this.handleSubmit}>
                     <div>
                         <label>Name</label>
@@ -100,7 +167,7 @@ class EditMedicationForm extends Component {
                         <input name="refills" onChange={this.handleChange} value={this.state.refills}/>
                     </div>
                     <div>
-                        <button type="submit" className="mt-3">Add medication</button>
+                        <button type="submit" className="mt-3">Edit Medication</button>
                     </div>
                 </form>
            </div>
