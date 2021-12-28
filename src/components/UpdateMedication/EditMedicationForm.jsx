@@ -23,12 +23,6 @@ class EditMedicationForm extends Component {
         this.getUserMedications()
     }
 
-    // componentDidUpdate(prevState){
-    //     if(this.state.selectedMedication !== prevState.selectedMedication){
-    //         this.formFiller(this.state.selectedMedication)
-    //     }
-    // }
-
     handleChange = (event) => {
         if(event.target.name === "selectedMedication" && event.target.value !== ""){
             this.setState({
@@ -97,19 +91,6 @@ class EditMedicationForm extends Component {
         )
     }
 
-    // formFiller = (medication) => {
-    //     this.setState({
-    //         name: medication.name,
-    //         strengthNumber: medication.strength.number,
-    //         strengthMeasurement: medication.strength.measurement,
-    //         doseNumber: medication.dose.number,
-    //         doseForm: medication.dose.form,
-    //         frequency: medication.frequency,
-    //         quantity: medication.quantity,
-    //         refills: medication.refills
-    //     })
-    // }
-
     formFiller = (medId) => {
         let newArray = this.state.arrayOfMedications.filter((element) => {
             if(element._id === medId){
@@ -146,23 +127,23 @@ class EditMedicationForm extends Component {
                         <label>Strength</label>
                         <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
                         <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
-                            <option selected value={''}>Select</option>
-                            <option value={"g"}>grams "g"</option>
-                            <option value={"mg"}>miligrams "mg"</option>
-                            <option value={"mg/ml"}>miligrams per mililiter "mg/ml"</option>
-                            <option value={"%"}>%</option>
-                            <option value={"mcg"}>micrograms "mcg"</option>
+                            <option selected={this.state.strengthMeasurement === ""} value={''}>Select</option>
+                            <option selected={this.state.strengthMeasurement === "g"} value={"g"}>grams "g"</option>
+                            <option selected={this.state.strengthMeasurement === "mg"} value={"mg"}>miligrams "mg"</option>
+                            <option selected={this.state.strengthMeasurement === "mg/ml"} value={"mg/ml"}>miligrams per mililiter "mg/ml"</option>
+                            <option selected={this.state.strengthMeasurement === "%"} value={"%"}>%</option>
+                            <option selected={this.state.strengthMeasurement === "mcg"} value={"mcg"}>micrograms "mcg"</option>
                         </select>
                     </div>
                     <div>
                         <label>Dose</label>
                         <input name="doseNumber" onChange={this.handleChange} value={this.state.doseNumber}/>
                         <select name="doseForm" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
-                            <option selected value={''}>Select</option>
-                            <option value={"tablet(s)"}>tablets</option>
-                            <option value={"capsule(s)"}>capsules</option>
-                            <option value={"ml"}>mililiters "ml"</option>
-                            <option value={"oz"}>ounces "oz"</option>
+                            <option selected={this.state.doseForm === ""} value={''}>Select</option>
+                            <option selected={this.state.doseForm === "tablet(s)"} value={"tablet(s)"}>tablets</option>
+                            <option selected={this.state.doseForm === "capsule(s)"} value={"capsule(s)"}>capsules</option>
+                            <option selected={this.state.doseForm === "ml"} value={"ml"}>mililiters "ml"</option>
+                            <option selected={this.state.doseForm === "oz"} value={"oz"}>ounces "oz"</option>
                         </select>
                     </div>
                     <div>
