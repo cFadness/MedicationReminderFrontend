@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 import AddMedicationForm from './AddMedicationForm';
 import EditMedicationForm from './EditMedicationForm';
 import RemoveMedicationForm from './RemoveMedicationForm';
+import Alert from '../YourMedications/Alert';
 
-// Add the 'remove medication' form
 // Add alerts to each form if user input is invalid
 // Proceed to style the entire app
 // Add color coded table in regard to quantity remaining and refills remaining
@@ -18,7 +18,8 @@ class UpdateMedicationPage extends Component {
         this.state = {
             currentFormAdd: false,
             currentFormEdit: false,
-            currentFormRemove: false
+            currentFormRemove: false,
+            alert: false
         };
     }
 
@@ -32,6 +33,9 @@ class UpdateMedicationPage extends Component {
         }
         catch(err){
             console.log("Error adding medication", err)
+            this.setState({
+                alert: true
+            })
         }
     }
 
@@ -44,6 +48,9 @@ class UpdateMedicationPage extends Component {
         }
         catch(err){
             console.log("Error editing medication", err)
+            this.setState({
+                alert: true
+            })
         }
     }
 
@@ -82,6 +89,12 @@ class UpdateMedicationPage extends Component {
             currentFormRemove: true
         })
     }
+
+    resetAlert = () => {
+        this.setState({
+            alert: false
+        })
+    }
      
 
 
@@ -93,6 +106,7 @@ class UpdateMedicationPage extends Component {
                    <Link onClick={this.chooseEditForm}>Edit medication</Link>
                    <Link onClick={this.chooseRemoveForm}>Remove medication</Link>
                </div>
+               <p>{this.state.alert ? <Alert severity="error" onClose={() => this.resetAlert()}>One or more fields are invalid</Alert> : null}</p>
                {this.state.currentFormAdd ? <AddMedicationForm addMedication = {this.addMedication} /> : null}
                {this.state.currentFormEdit ? <EditMedicationForm editMedication = {this.editMedication} /> : null}
                {this.state.currentFormRemove ? <RemoveMedicationForm removeMedication = {this.removeMedication} /> : null}
