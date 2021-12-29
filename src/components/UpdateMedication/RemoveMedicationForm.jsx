@@ -1,5 +1,76 @@
-// Add the 'remove medication' form
-// Add alerts to each form if user input is invalid
-// Proceed to style the entire app
-// Add color coded table in regard to quantity remaining and refills remaining
-// Add polish to app as ideas arise
+import React, { Component }  from 'react';
+import axios from 'axios';
+
+class RemoveMedicationForm extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            selectedMedication: "",
+            arrayOfMedications: []
+        };
+    }
+
+    componentDidMount(){
+        this.getUserMedications()
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        }, () => {
+            this.setState({
+                selectedMedication: this.state.selectedMedication
+            })
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.removeMedication(this.state.selectedMedication)
+    }
+
+    getUserMedications = async () => {
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:5000/api/users/medications`, {headers: {'x-auth-token': jwt}});
+            console.log(response.data)
+            this.setState({
+                arrayOfMedications: response.data
+            })
+        }
+        catch(err){
+            console.log("Error getting user medications", err)
+        }
+    }
+
+    medicationSelector = () => {
+        let dropDownList = this.state.arrayOfMedications.map((element) => {
+            return(
+                <option value={element._id}>{element.name}</option>
+            )
+        });
+        return(
+            <select name="selectedMedication" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                <option selected value={""}>Select</option>
+                {dropDownList}
+            </select>
+        )
+    }
+   
+    render(){
+        return(
+           <div>
+               <h5>Remove a medication:</h5>
+               {this.medicationSelector()}
+               <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <button type="submit" className="mt-3">Remove Medication</button>
+                    </div>
+                </form>
+           </div>
+        )
+    }
+}
+
+
+export default RemoveMedicationForm;

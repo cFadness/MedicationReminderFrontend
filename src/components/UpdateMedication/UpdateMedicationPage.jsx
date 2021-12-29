@@ -5,6 +5,12 @@ import AddMedicationForm from './AddMedicationForm';
 import EditMedicationForm from './EditMedicationForm';
 import RemoveMedicationForm from './RemoveMedicationForm';
 
+// Add the 'remove medication' form
+// Add alerts to each form if user input is invalid
+// Proceed to style the entire app
+// Add color coded table in regard to quantity remaining and refills remaining
+// Add polish to app as ideas arise
+
 
 class UpdateMedicationPage extends Component {
     constructor(props){
@@ -89,6 +95,7 @@ class UpdateMedicationPage extends Component {
                </div>
                {this.state.currentFormAdd ? <AddMedicationForm addMedication = {this.addMedication} /> : null}
                {this.state.currentFormEdit ? <EditMedicationForm editMedication = {this.editMedication} /> : null}
+               {this.state.currentFormRemove ? <RemoveMedicationForm removeMedication = {this.removeMedication} /> : null}
            </div>
         )
     }
