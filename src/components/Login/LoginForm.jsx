@@ -23,19 +23,22 @@ class LoginForm extends Component{
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input name="email" onChange={this.handleChange} value={this.state.email}/>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input name="password" onChange={this.handleChange} value={this.state.password}/>
-                </div>
-                <div>
-                    <button type="submit" className="mt-3">Login</button>
-                </div>
-            </form>
+            <div>
+                <h5>Login</h5>
+                <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>Email</label>
+                        <input name="email" onChange={this.handleChange} value={this.state.email}/>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input name="password" onChange={this.handleChange} value={this.state.password}/>
+                    </div>
+                    <div>
+                        <button type="submit" className="mt-3">Login</button>
+                    </div>
+                </form>
+            </div>
         );
     }
 }

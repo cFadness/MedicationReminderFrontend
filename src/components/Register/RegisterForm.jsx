@@ -25,23 +25,26 @@ class RegisterForm extends Component{
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input name="name" onChange={this.handleChange} value={this.state.name}/>
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input name="email" onChange={this.handleChange} value={this.state.email}/>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input name="password" onChange={this.handleChange} value={this.state.password}/>
-                </div>
-                <div>
-                    <button type="submit" className="mt-3">Create Account</button>
-                </div>
-            </form>
+            <div>
+                <h5>Register your free account:</h5>
+                <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>Username</label>
+                        <input name="name" onChange={this.handleChange} value={this.state.name}/>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input name="email" onChange={this.handleChange} value={this.state.email}/>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input name="password" onChange={this.handleChange} value={this.state.password}/>
+                    </div>
+                    <div>
+                        <button type="submit" className="mt-3">Create Account</button>
+                    </div>
+                </form>
+            </div>
         );
     }
 }

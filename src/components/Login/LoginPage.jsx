@@ -29,7 +29,6 @@ class LoginPage extends Component {
         return(
            <div>
                <h1>Medication Reminder</h1>
-               <h6>Login</h6>
                <LoginForm loginAccount={this.loginAccount}/>
                <Link to='/register'>
                    Don't have an account? Register Here

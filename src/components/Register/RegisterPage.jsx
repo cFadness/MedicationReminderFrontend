@@ -29,7 +29,6 @@ class RegisterPage extends Component {
         return(
            <div>
                <h1>Medication Reminder</h1>
-               <h6>Register your free acount:</h6>
                <RegisterForm registerNewAccount={this.registerNewAccount}/>
                <Link to='/login'>
                    Already a user? Login Here
