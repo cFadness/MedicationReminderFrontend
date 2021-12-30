@@ -108,8 +108,8 @@ class UpdateMedicationPage extends Component {
                         <Link onClick={this.chooseRemoveForm}>Remove medication</Link>
                     </h5>
                </div>
-               <p>{this.state.alert ? <Alert severity="error" onClose={() => this.resetAlert()}>One or more fields are invalid</Alert> : null}</p>
                <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
+                    <p className="alert">{this.state.alert ? <Alert severity="error" onClose={() => this.resetAlert()}>One or more fields are invalid</Alert> : null}</p>
                     {this.state.currentFormAdd ? <AddMedicationForm addMedication = {this.addMedication} /> : null}
                     {this.state.currentFormEdit ? <EditMedicationForm editMedication = {this.editMedication} /> : null}
                     {this.state.currentFormRemove ? <RemoveMedicationForm removeMedication = {this.removeMedication} /> : null}
