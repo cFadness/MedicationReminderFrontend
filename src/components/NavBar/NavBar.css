@@ -1,0 +1,13 @@
+.container-fluid{
+    background-color:cornflowerblue;
+    border: 1px solid black;
+}
+
+strong{
+    color: black;
+}
+
+.welcome{
+    text-align: center;
+    margin-top: 1%;
+}

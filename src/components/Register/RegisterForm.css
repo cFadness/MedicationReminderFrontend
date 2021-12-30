@@ -1,0 +1,25 @@
+.center-form{
+    margin-left: 30%;
+    margin-right: 41%;
+    text-align: right;
+}
+
+label{
+    padding-bottom: 1%;
+    padding-top: 5%;
+    padding-right: 2%;
+}
+
+button{
+    margin-bottom: 2%;
+}
+
+h5{
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+
+.register-form{
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
