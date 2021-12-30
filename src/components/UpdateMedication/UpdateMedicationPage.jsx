@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import AddMedicationForm from './AddMedicationForm';
 import EditMedicationForm from './EditMedicationForm';
 import RemoveMedicationForm from './RemoveMedicationForm';
@@ -11,7 +10,7 @@ class UpdateMedicationPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            currentFormAdd: false,
+            currentFormAdd: true,
             currentFormEdit: false,
             currentFormRemove: false,
             alert: false
@@ -90,17 +89,54 @@ class UpdateMedicationPage extends Component {
             alert: false
         })
     }
-     
 
+    selectAddMed  = () => {
+        if(this.state.currentFormAdd === true){
+            return(
+                <text className="underlined">Add medication</text>
+            )
+        }
+        else{
+            return(
+                <text>Add medication</text>
+            )
+        }
+    }
+
+    selectEditMed  = () => {
+        if(this.state.currentFormEdit === true){
+            return(
+                <text className="underlined">Edit medication</text>
+            )
+        }
+        else{
+            return(
+                <text>Edit medication</text>
+            )
+        }
+    }
+
+    selectRemoveMed  = () => {
+        if(this.state.currentFormRemove === true){
+            return(
+                <text className="underlined">Remove medication</text>
+            )
+        }
+        else{
+            return(
+                <text>Remove medication</text>
+            )
+        }
+    }
 
     render(){
         return(
            <div>
-               <div className="links">
+               <div className="tabs">
                     <h5>
-                        <Link onClick={this.chooseAddForm}>Add medication </Link>
-                        <Link onClick={this.chooseEditForm}>Edit medication </Link>
-                        <Link onClick={this.chooseRemoveForm}>Remove medication</Link>
+                        <button className="tabs2" onClick={this.chooseAddForm}>{this.selectAddMed()}</button>
+                        <button className="tabs2" onClick={this.chooseEditForm}>{this.selectEditMed()}</button>
+                        <button className="tabs2" onClick={this.chooseRemoveForm}>{this.selectRemoveMed()}</button>
                     </h5>
                </div>
                <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
