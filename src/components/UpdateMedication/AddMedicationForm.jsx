@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import axios from 'axios';
+import './UpdateMedicationPage.css';
 
 class AddMedicationForm extends Component {
     constructor(props){
@@ -48,14 +48,14 @@ class AddMedicationForm extends Component {
    
     render(){
         return(
-           <div>
+           <div className="update-form">
                <h5>Add a medication:</h5>
                <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className="center-form">
                         <label>Name</label>
                         <input name="name" onChange={this.handleChange} value={this.state.name}/>
                     </div>
-                    <div>
+                    <div className="center-form">
                         <label>Strength</label>
                         <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
                         <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
@@ -67,7 +67,7 @@ class AddMedicationForm extends Component {
                             <option value={"mcg"}>micrograms "mcg"</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="center-form">
                         <label>Dose</label>
                         <input name="doseNumber" onChange={this.handleChange} value={this.state.doseNumber}/>
                         <select name="doseForm" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
@@ -78,15 +78,15 @@ class AddMedicationForm extends Component {
                             <option value={"oz"}>ounces "oz"</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="center-form">
                         <label>Frequency "How many times per day?"</label>
                         <input name="frequency" onChange={this.handleChange} value={this.state.frequency}/>
                     </div>
-                    <div>
+                    <div className="center-form">
                         <label>Quantity Remaining</label>
                         <input name="quantity" onChange={this.handleChange} value={this.state.quantity}/>
                     </div>
-                    <div>
+                    <div className="center-form">
                         <label>Refills Remaining</label>
                         <input name="refills" onChange={this.handleChange} value={this.state.refills}/>
                     </div>

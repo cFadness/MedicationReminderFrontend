@@ -1,0 +1,36 @@
+.links{
+    margin-top: -5%;
+    text-align: center;
+    margin-bottom: -5%;
+}
+
+.center-form{
+    margin-left: 10%;
+    margin-right: 41%;
+    text-align: right;
+}
+
+.form-select{
+    margin-left: 64%;
+    padding-right: -20%;
+}
+
+label{
+    padding-bottom: 1%;
+    padding-top: 5%;
+    padding-right: 2%;
+}
+
+button{
+    margin-bottom: 2%;
+}
+
+h5{
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+
+.update-form{
+    margin-top: 5%;
+    margin-bottom: 3%;
+}

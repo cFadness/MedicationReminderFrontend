@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import axios from 'axios';
+import './UpdateMedicationPage.css';
 
 class EditMedicationForm extends Component {
     constructor(props){
