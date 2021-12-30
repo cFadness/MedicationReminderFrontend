@@ -55,10 +55,10 @@ class AddMedicationForm extends Component {
                         <label>Name</label>
                         <input name="name" onChange={this.handleChange} value={this.state.name}/>
                     </div>
-                    <div className="center-form">
+                    <div className="center-form-strength">
                         <label>Strength</label>
                         <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
-                            <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                            <select name="strengthMeasurement" onChange={this.handleChange} className="dropdown" aria-label="Default select example">
                                 <option selected value={''}>Select</option>
                                 <option value={"g"}>grams "g"</option>
                                 <option value={"mg"}>miligrams "mg"</option>
@@ -67,10 +67,10 @@ class AddMedicationForm extends Component {
                                 <option value={"mcg"}>micrograms "mcg"</option>
                             </select>
                     </div>
-                    <div className="center-form">
+                    <div className="center-form-dose">
                         <label>Dose</label>
                         <input name="doseNumber" onChange={this.handleChange} value={this.state.doseNumber}/>
-                        <select name="doseForm" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                        <select name="doseForm" onChange={this.handleChange} className="dropdown" aria-label="Default select example">
                             <option selected value={''}>Select</option>
                             <option value={"tablet(s)"}>tablets</option>
                             <option value={"capsule(s)"}>capsules</option>

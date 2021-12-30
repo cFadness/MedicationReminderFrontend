@@ -85,7 +85,7 @@ class EditMedicationForm extends Component {
             )
         });
         return(
-            <select name="selectedMedication" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+            <select name="selectedMedication" onChange={this.handleChange} className="dropdown2" aria-label="Default select example">
                 <option selected value={""}>Select</option>
                 {dropDownList}
             </select>
@@ -126,10 +126,10 @@ class EditMedicationForm extends Component {
                         <label>Name</label>
                         <input name="name" onChange={this.handleChange} value={this.state.name}/>
                     </div>
-                    <div className="center-form">
+                    <div className="center-form-strength">
                         <label>Strength</label>
                         <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
-                        <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                        <select name="strengthMeasurement" onChange={this.handleChange} className="dropdown" aria-label="Default select example">
                             <option selected={this.state.strengthMeasurement === ""} value={''}>Select</option>
                             <option selected={this.state.strengthMeasurement === "g"} value={"g"}>grams "g"</option>
                             <option selected={this.state.strengthMeasurement === "mg"} value={"mg"}>miligrams "mg"</option>
@@ -138,10 +138,10 @@ class EditMedicationForm extends Component {
                             <option selected={this.state.strengthMeasurement === "mcg"} value={"mcg"}>micrograms "mcg"</option>
                         </select>
                     </div>
-                    <div className="center-form">
+                    <div className="center-form-dose">
                         <label>Dose</label>
                         <input name="doseNumber" onChange={this.handleChange} value={this.state.doseNumber}/>
-                        <select name="doseForm" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                        <select name="doseForm" onChange={this.handleChange} className="dropdown" aria-label="Default select example">
                             <option selected={this.state.doseForm === ""} value={''}>Select</option>
                             <option selected={this.state.doseForm === "tablet(s)"} value={"tablet(s)"}>tablets</option>
                             <option selected={this.state.doseForm === "capsule(s)"} value={"capsule(s)"}>capsules</option>

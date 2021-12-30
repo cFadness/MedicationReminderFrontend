@@ -11,6 +11,29 @@
     text-align: right;
 }
 
+.center-form-strength{
+    margin-left: 20%;
+    margin-right: 18.5%;
+    text-align: right;
+}
+
+.center-form-dose{
+    margin-left: 10%;
+    margin-right: 30%;
+    text-align: right;
+}
+
+.dropdown{
+    padding-top: .5%;
+    padding-bottom: .5%;
+}
+
+.dropdown2{
+    padding-top: .5%;
+    padding-bottom: .5%;
+    padding-right: 8%;
+}
+
 .form-select{
     margin-left: 64%;
     padding-right: -20%;
