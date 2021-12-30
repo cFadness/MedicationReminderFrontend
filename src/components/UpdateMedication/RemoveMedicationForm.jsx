@@ -60,9 +60,11 @@ class RemoveMedicationForm extends Component {
    
     render(){
         return(
-           <div>
+           <div className="update-form">
                <h5>Remove a medication:</h5>
-               {this.medicationSelector()}
+               <div className="center-form">
+                    {this.medicationSelector()}
+               </div>
                <form onSubmit={this.handleSubmit}>
                     <div>
                         <button type="submit" className="mt-3">Remove Medication</button>

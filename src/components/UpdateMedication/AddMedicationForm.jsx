@@ -58,14 +58,14 @@ class AddMedicationForm extends Component {
                     <div className="center-form">
                         <label>Strength</label>
                         <input name="strengthNumber" onChange={this.handleChange} value={this.state.strengthNumber}/>
-                        <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
-                            <option selected value={''}>Select</option>
-                            <option value={"g"}>grams "g"</option>
-                            <option value={"mg"}>miligrams "mg"</option>
-                            <option value={"mg/ml"}>miligrams per mililiter "mg/ml"</option>
-                            <option value={"%"}>%</option>
-                            <option value={"mcg"}>micrograms "mcg"</option>
-                        </select>
+                            <select name="strengthMeasurement" onChange={this.handleChange} className="form-select form-control" aria-label="Default select example">
+                                <option selected value={''}>Select</option>
+                                <option value={"g"}>grams "g"</option>
+                                <option value={"mg"}>miligrams "mg"</option>
+                                <option value={"mg/ml"}>miligrams per mililiter "mg/ml"</option>
+                                <option value={"%"}>%</option>
+                                <option value={"mcg"}>micrograms "mcg"</option>
+                            </select>
                     </div>
                     <div className="center-form">
                         <label>Dose</label>
