@@ -154,14 +154,57 @@ class YourMedicationsPage extends Component {
         }
     }
 
+    quantityColor  = (dose, frequency, quantity) => {
+        let color
+        let daysWorthRemaining = quantity/(dose*frequency)
+        if(daysWorthRemaining >= 20){
+            color = "green"
+        }
+        else if(daysWorthRemaining < 20 && daysWorthRemaining >= 10){
+            color = "yellow"
+        }
+        else{
+            color = "red"
+        }
+
+        return color
+    }
+
+    refillsColor = (refills) => {
+        let color
+        if(refills >= 2){
+            color = "green"
+        }
+        else if(refills == 1){
+            color = "yellow"
+        }
+        else{
+            color = "red"
+        }
+
+        return color
+    }
+
+    notifyColor = (notifications) => {
+        let color
+        if(notifications === "Enabled"){
+            color = "green"
+        }
+        else{
+            color = "red"
+        }
+
+        return color
+    }
+
     render(){
         return(
-            <div>
-                {this.state.redAlert ? <Alert severity="error" onClose={() => this.resetRedAlert()}>It is time to notify your pharmacy that you are out of refills for <strong>{this.state.redName}</strong></Alert> : null}
-                {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <strong>{this.state.yellowName}</strong></Alert> : null}
-                {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <strong>{this.state.greenName}</strong></Alert> : null }
-                {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <strong>{this.state.blueName}</strong></Alert> : null}
-                <YourMedicationsTable arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} changeNotifications={this.changeNotifications} />
+            <div className="med-page">
+                {this.state.redAlert ? <Alert severity="error" onClose={() => this.resetRedAlert()}>It is time to notify your pharmacy that you are out of refills for <b>{this.state.redName}</b></Alert> : null}
+                {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <b>{this.state.yellowName}</b></Alert> : null}
+                {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <b>{this.state.greenName}</b></Alert> : null }
+                {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <b>{this.state.blueName}</b></Alert> : null}
+                <YourMedicationsTable notifyColor={this.notifyColor} refillsColor={this.refillsColor} quantityColor={this.quantityColor} arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} changeNotifications={this.changeNotifications} />
             </div>
         )
     }

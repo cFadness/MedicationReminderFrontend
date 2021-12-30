@@ -1,0 +1,39 @@
+.med-page{
+    margin-top: 7%;
+}
+
+.table{
+    text-align: center;
+    background-color: cornflowerblue;
+    border-top: solid;
+    color: white;
+    font-weight: bold;
+}
+
+.notify-button{
+    margin-left: 5%;
+}
+
+.left-align{
+    text-align: left;
+}
+
+.red{
+    color: red;
+    font-weight: bolder;
+}
+
+.yellow{
+    color: yellow;
+    font-weight: bolder;
+}
+
+.green{
+    color: green;
+    font-weight: bolder;
+}
+
+button{
+    background-color: lightgray;
+    font-weight: bold;
+}
