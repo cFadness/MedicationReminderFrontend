@@ -5,9 +5,6 @@
 .table{
     text-align: center;
     background-color: cornflowerblue;
-    border-top: solid;
-    color: white;
-    font-weight: bold;
 }
 
 .notify-button{
@@ -16,6 +13,11 @@
 
 .left-align{
     text-align: left;
+}
+
+.white-text{
+    color: white;
+    font-weight: bold;
 }
 
 .red{
@@ -36,4 +38,16 @@
 button{
     background-color: lightgray;
     font-weight: bold;
+}
+
+.title{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2%;
+    border-bottom: solid, black;
+    color: black;
+}
+
+thead{
+    color: black;
 }

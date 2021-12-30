@@ -200,11 +200,16 @@ class YourMedicationsPage extends Component {
     render(){
         return(
             <div className="med-page">
-                {this.state.redAlert ? <Alert severity="error" onClose={() => this.resetRedAlert()}>It is time to notify your pharmacy that you are out of refills for <b>{this.state.redName}</b></Alert> : null}
-                {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <b>{this.state.yellowName}</b></Alert> : null}
-                {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <b>{this.state.greenName}</b></Alert> : null }
-                {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <b>{this.state.blueName}</b></Alert> : null}
-                <YourMedicationsTable notifyColor={this.notifyColor} refillsColor={this.refillsColor} quantityColor={this.quantityColor} arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} changeNotifications={this.changeNotifications} />
+                <div>
+                    <h3 className="title">Your Medications</h3>
+                </div>
+                <div>
+                    {this.state.redAlert ? <Alert severity="error" onClose={() => this.resetRedAlert()}>It is time to notify your pharmacy that you are out of refills for <b>{this.state.redName}</b></Alert> : null}
+                    {this.state.yellowAlert ? <Alert severity="warning" onClose={() => this.resetYellowAlert()}>It is time to notify your pharmacy that you need a refill of <b>{this.state.yellowName}</b></Alert> : null}
+                    {this.state.greenAlert ? <Alert severity="success" onClose={() => this.resetGreenAlert()}>You have taken a dose of <b>{this.state.greenName}</b></Alert> : null }
+                    {this.state.blueAlert ? <Alert severity="info" onClose={() => this.resetBlueAlert()}>Insufficient quantity to take a dose of <b>{this.state.blueName}</b></Alert> : null}
+                    <YourMedicationsTable notifyColor={this.notifyColor} refillsColor={this.refillsColor} quantityColor={this.quantityColor} arrayOfMedications={this.state.arrayOfMedications} takeDoseButton={this.takeDoseButton} changeNotifications={this.changeNotifications} />
+                </div>
             </div>
         )
     }

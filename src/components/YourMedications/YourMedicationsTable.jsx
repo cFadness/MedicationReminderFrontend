@@ -13,7 +13,7 @@ const YourMedicationsTable = (props) => {
         }
 
         return(
-            <tr>
+            <tr className="white-text">
                 <td>
                     <button onClick={() => props.takeDoseButton(element._id, element.dose.number, element.quantity, element.name, element.refills, element.frequency, element.notifyEnabled)}>Take Dose</button>
                 </td>
