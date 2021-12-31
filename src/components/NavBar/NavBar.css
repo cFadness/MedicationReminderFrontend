@@ -10,4 +10,9 @@ strong{
 .welcome{
     text-align: center;
     margin-top: 1%;
+    color: white;
+    background-color: cornflowerblue;
+    margin-top: 0px;
+    padding-bottom: .5%;
+    padding-top: .5%;
 }

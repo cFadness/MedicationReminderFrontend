@@ -27,13 +27,17 @@ class LoginPage extends Component {
 
     render(){
         return(
-           <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
-               <h1>Medication Reminder</h1>
-               <LoginForm loginAccount={this.loginAccount}/>
-               <Link to='/register'>
-                   Don't have an account? Register Here
-               </Link>
-           </div>
+            <div className="my-container-two">
+                <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
+                    <div className="my-content-two">
+                        <h1>Medication Reminder</h1>
+                        <LoginForm loginAccount={this.loginAccount}/>
+                        <Link to='/register'>
+                            Don't have an account? Register Here
+                        </Link>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

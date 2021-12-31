@@ -15,7 +15,7 @@ const NavBar = (props) => {
             {!props.currentUser &&
                 <React.Fragment>
                     <div className="welcome">
-                        <h4>Welcome</h4>
+                        <h2>Welcome</h2>
                     </div>
                 </React.Fragment>
             }

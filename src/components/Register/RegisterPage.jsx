@@ -15,8 +15,8 @@ class RegisterPage extends Component {
 
     registerNewAccount = async (inputObject) => {
         try{
-            let newAccount = await axios.post('http://localhost:5000/api/users/register', inputObject)
-            console.log(newAccount)
+            let response = await axios.post('http://localhost:5000/api/users/register', inputObject)
+            console.log(response)
             window.location = '/'
         }
         catch(err){
@@ -24,16 +24,27 @@ class RegisterPage extends Component {
         }
     }
 
+    // Create an alert message that verifies you have registered your account.
+    //... On close, run a function that redirects to the login page.
+
+    // Add black dots to the password input boxes.
+
+    // Find a better background image for login and register pages.
+
 
     render(){
         return(
-           <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
-               <h1>Medication Reminder</h1>
-               <RegisterForm registerNewAccount={this.registerNewAccount}/>
-               <Link to='/login'>
-                   Already a user? Login Here
-               </Link>
-           </div>
+            <div className="my-container">
+                <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
+                    <div className="my-content">
+                        <h1>Medication Reminder</h1>
+                        <RegisterForm registerNewAccount={this.registerNewAccount}/>
+                        <Link to='/login'>
+                            Already a user? Login Here
+                        </Link>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
