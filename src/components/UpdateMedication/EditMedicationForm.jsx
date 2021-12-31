@@ -85,7 +85,7 @@ class EditMedicationForm extends Component {
             )
         });
         return(
-            <select name="selectedMedication" onChange={this.handleChange} className="dropdown2" aria-label="Default select example">
+            <select name="selectedMedication" onChange={this.handleChange} className="dropdown-two" aria-label="Default select example">
                 <option selected value={""}>Select</option>
                 {dropDownList}
             </select>

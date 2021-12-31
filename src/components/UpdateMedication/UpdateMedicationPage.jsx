@@ -134,9 +134,9 @@ class UpdateMedicationPage extends Component {
            <div>
                <div className="tabs">
                     <h5>
-                        <button className="tabs2" onClick={this.chooseAddForm}>{this.selectAddMed()}</button>
-                        <button className="tabs2" onClick={this.chooseEditForm}>{this.selectEditMed()}</button>
-                        <button className="tabs2" onClick={this.chooseRemoveForm}>{this.selectRemoveMed()}</button>
+                        <button className="tabs-two" onClick={this.chooseAddForm}>{this.selectAddMed()}</button>
+                        <button className="tabs-two" onClick={this.chooseEditForm}>{this.selectEditMed()}</button>
+                        <button className="tabs-two" onClick={this.chooseRemoveForm}>{this.selectRemoveMed()}</button>
                     </h5>
                </div>
                <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">

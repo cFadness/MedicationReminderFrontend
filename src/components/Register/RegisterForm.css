@@ -48,3 +48,18 @@ h5{
 .my-content{
     position: relative;
 }
+
+.alertOne{
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.buttonOne{
+    border: none;
+    background-color: transparent;
+}
+
+.click-here{
+    color: white;
+}

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import RegisterForm from './RegisterForm';
 import {Link} from 'react-router-dom';
+import Alert from '../YourMedications/Alert';
 
 
 class RegisterPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            
+            alert: false
         };
     }
 
@@ -17,20 +18,21 @@ class RegisterPage extends Component {
         try{
             let response = await axios.post('http://localhost:5000/api/users/register', inputObject)
             console.log(response)
-            window.location = '/'
+            this.setState({
+                alert: true
+            })
         }
         catch(err){
             console.log("Error creating new account", err)
         }
     }
 
-    // Create an alert message that verifies you have registered your account.
-    //... On close, run a function that redirects to the login page.
-
-    // Add black dots to the password input boxes.
-
-    // Find a better background image for login and register pages.
-
+    confirmAlert = () => {
+        this.setState({
+            alert: false
+        })
+        window.location = '/'
+    }
 
     render(){
         return(
@@ -38,6 +40,7 @@ class RegisterPage extends Component {
                 <div className="col-lg-6 col-lg-7 mx-auto text-center form p-4">
                     <div className="my-content">
                         <h1>Medication Reminder</h1>
+                        <p className="alertOne">{this.state.alert ? <Alert severity="success">You have successfully created your account! <button onClick={() => this.confirmAlert()} className="buttonOne"><strong className="click-here">CLICK HERE</strong></button> to login</Alert> : null}</p>
                         <RegisterForm registerNewAccount={this.registerNewAccount}/>
                         <Link to='/login'>
                             Already a user? Login Here
