@@ -39,7 +39,7 @@ class RegisterForm extends Component{
                     </div>
                     <div className="center-form">
                         <label>Password</label>
-                        <input name="password" onChange={this.handleChange} value={this.state.password}/>
+                        <input name="password" type="password" onChange={this.handleChange} value={this.state.password}/>
                     </div>
                     <div>
                         <button type="submit" className="mt-3">Create Account</button>
