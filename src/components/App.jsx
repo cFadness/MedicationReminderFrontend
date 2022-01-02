@@ -47,23 +47,6 @@ class App extends Component {
         }
     }
 
-    // checkUser=()=>{
-    //     const jwt = localStorage.getItem('token');
-    //     try{
-    //         const user = jwtDecode(jwt);
-    //         this.setState({
-    //             currentUser: user
-    //         });
-            
-    //     }
-    //     catch(err){
-    //         console.log("Error decoding token", err);
-    //         this.setState({
-    //             currentUser: null
-    //         });
-    //     }
-    // }
-
     render() {
         return(
             <div>
