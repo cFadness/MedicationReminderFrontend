@@ -52,7 +52,7 @@ class RemoveMedicationForm extends Component {
         });
         return(
             <select name="selectedMedication" onChange={this.handleChange} className="dropdown-two" aria-label="Default select example">
-                <option selected value={""}>Select</option>
+                <option selected value={""}>Select------------------------</option>
                 {dropDownList}
             </select>
         )
