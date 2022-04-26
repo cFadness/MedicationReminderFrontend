@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import EditPharmacyInfoForm from './EditPharmacyInfoForm';
 
 
 class UpdatePharmacyInfoPage extends Component {
